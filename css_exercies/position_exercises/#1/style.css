@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+}
+
+.image-container {
+    width: 60%;
+    margin: auto;
+    position: relative;
+    border: 2px solid black;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+}
+
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+}

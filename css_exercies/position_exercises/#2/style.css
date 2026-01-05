@@ -1,0 +1,24 @@
+.flag {
+    width: 200px;
+    height: 200px;
+    background: #1e3aff;
+    position: relative;
+}
+
+.vertical {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 15px;
+    height: 100%;
+    background: #c40000;
+}
+
+.horizontal {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    height: 15px;
+    width: 100%;
+    background: #c40000;
+}

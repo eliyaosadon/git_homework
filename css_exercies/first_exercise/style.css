@@ -1,0 +1,161 @@
+/* ===== General ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 40px;
+}
+
+/* ===== Exercise 1 ===== */
+.text-red {
+    color: red;
+    font-size: 20px;
+}
+
+.text-green {
+    color: green;
+    font-size: 24px;
+    font-family: "Courier New";
+}
+
+.text-blue {
+    color: blue;
+    font-size: 28px;
+    font-family: Tinos;
+}
+
+/* ===== Exercise 2 + 3 ===== */
+.bookmark-image {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    transition: transform 0.2s;
+    border-radius: 16px;
+    /* עיגול עדין */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* עומק יפה */
+    background-color: white;
+    /* מונע שקיפות מוזרה */
+    object-fit: contain;
+    /* שומר על האייקון */
+}
+
+.bookmark-image:hover {
+    transform: scale(1.1);
+}
+
+/* ===== Exercise 4 ===== */
+#container {
+    width: 300px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    background: green;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.second {
+    background: orange;
+}
+
+.prompt {
+    text-align: left;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.button {
+    width: 100%;
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+/* ===== Exercise 5 ===== */
+table {
+    width: 800px;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background: #2196F3;
+    color: white;
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ===== Exercise 7 ===== */
+.image-container {
+    width: 300px;
+    position: relative;
+    margin: 40px auto;
+}
+
+.image-container img {
+    width: 100%;
+}
+
+.transparent-title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    color: rgb(0, 0, 0, 0.2);
+}
+
+.opaque-title {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: black;
+    color: white;
+}
+
+/* ===== Exercise 6 – Recipe Styling ===== */
+h2+img {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+}
+
+h2 {
+    margin-top: 60px;
+}
+
+ul {
+    width: 300px;
+    margin: 20px auto 60px;
+    padding: 20px;
+    list-style-type: disc;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
