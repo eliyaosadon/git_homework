@@ -3,3 +3,4 @@ pine
 maple
 banana-tree
 apple tree
+ekaliptus
