@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f0f2f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            direction: ltr;
+        }
+
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2.ex-title {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* --- Exercise 1: Responsive Box --- */
+        .box {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 769px) {
+            .box {
+                width: 300px;
+                background-color: blue;
+            }
+
+            .box::after {
+                content: "Desktop: 300px wide";
+            }
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 100%;
+                background-color: red;
+            }
+
+            .box::after {
+                content: "Mobile: 100% wide";
+            }
+        }
+
+        /* --- Exercise 2: Responsive Typography --- */
+        .typo-section h1 {
+            color: #2c3e50;
+        }
+
+        @media (min-width: 901px) {
+            .typo-section h1 {
+                font-size: 48px;
+            }
+
+            .typo-section p {
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .typo-section h1 {
+                font-size: 36px;
+            }
+
+            .typo-section p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .typo-section h1 {
+                font-size: 24px;
+            }
+
+            .typo-section p {
+                font-size: 14px;
+            }
+        }
+
+        /* --- Exercise 3: Image Gallery --- */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 250px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* חיתוך אחיד לתמונות ביחס שונה */
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+        }
+
+        /* Gallery Responsiveness using percentages */
+        @media (min-width: 901px) {
+            .gallery-item {
+                width: calc(33.333% - 14px);
+            }
+
+            .image-text {
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .gallery-item {
+                width: calc(50% - 10px);
+            }
+
+            .image-text {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-item {
+                width: 100%;
+            }
+
+            .image-text {
+                font-size: 14px;
+            }
+        }
+
+
+        /* --- Exercise 5: Product Card --- */
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            transition: all 0.3s ease;
+        }
+
+        .product-img {
+            background: #eee;
+            min-height: 200px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex: 1;
+        }
+
+        @media (min-width: 901px) {
+            .product-card {
+                flex-direction: row;
+                max-width: 800px;
+            }
+
+            .product-info h3 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .product-card {
+                flex-direction: column;
+                max-width: 400px;
+            }
+
+            .product-info h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <h2 class="ex-title">Exercise 1</h2>
+        <div class="box"></div>
+    </section>
+
+    <section class="typo-section">
+        <h2 class="ex-title">Exercise 2</h2>
+        <h1>Responsive Heading</h1>
+        <p>This paragraph font size changes based on your screen width. Try resizing the browser window!</p>
+    </section>
+
+    <section>
+        <h2 class="ex-title">Exercise 3</h2>
+        <div class="gallery">
+            <div class="gallery-item" onclick="window.open('https://picsum.photos/id/10/1200/800', '_blank')">
+                <img src="https://picsum.photos/id/10/400/300" alt="Image 1">
+                <span class="image-text">Nature 1</span>
+            </div>
+            <div class="gallery-item" onclick="window.open('https://picsum.photos/id/20/1200/800', '_blank')">
+                <img src="https://picsum.photos/id/20/400/600" alt="Image 2">
+                <span class="image-text">Nature 2</span>
+            </div>
+            <div class="gallery-item" onclick="window.open('https://picsum.photos/id/30/1200/800', '_blank')">
+                <img src="https://picsum.photos/id/30/500/500" alt="Image 3">
+                <span class="image-text">Nature 3</span>
+            </div>
+            <div class="gallery-item" onclick="window.open('https://picsum.photos/id/40/1200/800', '_blank')">
+                <img src="https://picsum.photos/id/40/300/400" alt="Image 4">
+                <span class="image-text">Nature 4</span>
+            </div>
+            <div class="gallery-item" onclick="window.open('https://picsum.photos/id/50/1200/800', '_blank')">
+                <img src="https://picsum.photos/id/50/800/400" alt="Image 5">
+                <span class="image-text">Nature 5</span>
+            </div>
+            <div class="gallery-item" onclick="window.open('https://picsum.photos/id/60/1200/800', '_blank')">
+                <img src="https://picsum.photos/id/60/400/400" alt="Image 6">
+                <span class="image-text">Nature 6</span>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h2 class="ex-title">Exercise 5: Product Card</h2>
+        <div class="product-card">
+            <div class="product-img">📷 Product Image</div>
+            <div class="product-info">
+                <h3>Premium Headphones</h3>
+                <p>High-quality sound with noise cancellation technology. Perfect for work and travel.</p>
+                <p><strong>$299.00</strong></p>
+                <button
+                    style="padding: 10px 20px; background: #4a90e2; color: white; border: none; border-radius: 5px;">Add
+                    to Cart</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

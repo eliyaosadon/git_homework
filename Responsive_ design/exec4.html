@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Holy Grail</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .holy-grail {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .hg-header {
+            background-color: #6a5acd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hg-main {
+            display: flex;
+            flex: 1;
+        }
+
+        .hg-nav {
+            flex: 0 0 180px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-right: 1px solid #eee;
+        }
+
+        .hg-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hg-nav li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hg-content {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+        }
+
+        .hg-sidebar {
+            flex: 0 0 200px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 1px solid #eee;
+        }
+
+        .hg-footer {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .hg-main {
+                flex-direction: column;
+            }
+
+            .hg-nav,
+            .hg-sidebar,
+            .hg-content {
+                flex: none;
+                width: 100%;
+                border: none;
+                box-sizing: border-box;
+            }
+
+            .hg-nav {
+                order: 1;
+            }
+
+            .hg-content {
+                order: 2;
+            }
+
+            .hg-sidebar {
+                order: 3;
+            }
+
+            .hg-nav ul {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .hg-nav li {
+                border-bottom: none;
+                background: #eee;
+                padding: 5px 10px;
+                border-radius: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="holy-grail">
+        <header class="hg-header">
+            <h1>Holy Grail Layout Demo</h1>
+        </header>
+
+        <div class="hg-main">
+            <nav class="hg-nav">
+                <strong>Navigation</strong>
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Services</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
+
+            <article class="hg-content">
+                <h3>Main Content</h3>
+                <p>This is a demonstration of the classic "Holy Grail" layout pattern implemented using CSS Flexbox.
+                    The center column contains the main content, while the left and right columns contain
+                    supplementary content like navigation or advertisements.</p>
+            </article>
+
+            <aside class="hg-sidebar">
+                <strong>Sidebar</strong>
+                <p>This sidebar demonstrates how flexible content areas work.</p>
+            </aside>
+        </div>
+
+        <footer class="hg-footer">
+            © 2026 Responsive Holy Grail
+        </footer>
+    </div>
+
+</body>
+
+</html>
