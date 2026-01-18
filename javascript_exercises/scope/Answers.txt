@@ -1,0 +1,147 @@
+Section 1
+
+What will console log?
+
+It will print "running" (8 times).
+
+It will print "Finished running 8 miles".
+
+Then it will crash with an Error.
+
+Will there be an error? Yes. ReferenceError: distance is not defined.
+
+Why? The variable distance is declared with let inside the if block. This makes it block-scoped. It only exists within the curly braces {} of the if statement. The final console.log is outside those braces (in the global scope), so it cannot see distance.
+
+Scopes:
+
+run: Global scope.
+
+distance: Block scope (inside the if).
+
+i: Block scope (inside the for loop).
+
+
+
+Section 2
+
+What will console log? Nothing (it crashes before printing).
+
+Will there be an error? Yes. ReferenceError: cowSound is not defined.
+
+Why?
+
+The condition 13 == "space" is false, so the code enters the else block.
+
+The else block tries to access cowSound.
+
+cowSound was declared inside the if block using let. Variables declared with let are block-scoped, meaning they do not leak out of the block they were defined in. The else block has no access to the if block's variables.
+
+Scopes:
+
+cowSound: Block scope (inside the if block only).
+
+
+
+
+Section 3
+
+What will console log?
+
+Plaintext
+Served a special fish
+Served a special lettuce plate
+Served a special curious cheese
+Finished serving all the orders: fish,lettuce plate,curious cheese
+Will there be an error? No.
+
+Why?
+
+Inside the loop, specialOrder is created and used within its own scope (the loop block), which is fine.
+
+The final console.log accesses orders. orders is the parameter of the function serveOrders. Function parameters act like local variables for the entire function scope, so they can be accessed anywhere inside that function (including after the loop).
+
+Scopes:
+
+serveOrders: Global scope.
+
+allOrders: Global scope.
+
+orders (parameter): Local/Function scope (inside serveOrders).
+
+order: Block scope (inside the for loop).
+
+specialOrder: Block scope (inside the for loop).
+
+
+
+Section 4
+
+What will console log? Nothing (crashes).
+
+Will there be an error? Yes. ReferenceError: seed is not defined.
+
+Why?
+
+You are trying to use seed inside the plant function.
+
+seed is defined inside the getSeed function.
+
+Variables defined inside a function are Local to that function. plant cannot "see" inside getSeed.
+
+Scopes:
+
+pot: Global scope (accessible everywhere).
+
+seed: Local scope (only inside getSeed).
+
+
+
+Section 5
+
+What will console log? Nothing (crashes).
+
+Will there be an error? Yes. ReferenceError: found is not defined.
+
+Why?
+
+The variable found is declared with const inside the if block.
+
+const (like let) is block-scoped.
+
+The return found statement is outside that if block. As soon as the if block closes }, the variable found is destroyed. The return statement tries to access a variable that no longer exists.
+
+Scopes:
+
+doesUserExist: Global scope.
+
+users: Local/Function scope.
+
+u: Block scope (loop).
+
+found: Block scope (inside the if).
+
+
+
+Section 6
+
+What will console log? Nothing (crashes).
+
+Will there be an error? Yes. TypeError: Assignment to constant variable.
+
+Why?
+
+isEnough is declared as a const in the global scope.
+
+Inside the loop, the line isEnough = true tries to change the value of that global variable.
+
+You cannot reassign a variable declared with const.
+
+Note: If isEnough had been declared with let, this would have worked perfectly because the function has access to the global scope.
+
+Scopes:
+
+isEnough: Global scope.
+
+makeEnough: Global scope.
+
+i: Block scope (loop).
