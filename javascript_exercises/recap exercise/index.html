@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Recap</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .post {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        .post:hover {
+            background-color: #e0e0e0;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="input-area">
+        <input type="text" id="input-name" placeholder="Name">
+        <input type="text" id="input-text" placeholder="What's on your mind?">
+        <button id="post-btn">Post</button>
+    </div>
+
+    <hr>
+
+    <div id="posts-container"></div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
