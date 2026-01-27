@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trie AutoComplete UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🔮 AutoComplete Trie</h1>
+
+        <div class="card">
+            <h2>1. Build Dictionary</h2>
+            <div class="input-group">
+                <input type="text" id="new-word-input" placeholder="Enter a word (e.g. 'apple')">
+                <button id="add-btn">Add Word</button>
+            </div>
+            <div id="add-error" class="error-msg"></div>
+
+            <div class="dictionary-container">
+                <h3>Current Dictionary:</h3>
+                <ul id="dictionary-list">
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Try It Out</h2>
+            <p>Start typing to see suggestions:</p>
+
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="Type something..." autocomplete="off">
+
+                <ul id="suggestions-list" class="suggestions-box hidden"></ul>
+            </div>
+
+            <div class="content-underneath">
+                <p><em>(This text proves the menu floats on top instead of pushing content down!)</em></p>
+                <button class="dummy-btn">I'm just here to be covered</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="trie.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
