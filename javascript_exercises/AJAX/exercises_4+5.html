@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giphy Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+            border: none;
+        }
+
+        #gif-container {
+            margin-top: 20px;
+        }
+
+        iframe {
+            border: none;
+            width: 480px;
+            height: 360px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>GIF Generator</h1>
+
+    <div>
+        <input type="text" id="gif-input" placeholder="Search for gifs (e.g. cats)">
+        <button id="search-btn">Search</button>
+    </div>
+
+    <div id="gif-container">
+    </div>
+
+    <script>
+        const fetchGif = function () {
+            const input = $("#gif-input").val();
+            // Replace with your actual key
+            const apiKey = "duCZJNhsSGCV6zbdeqXyOAeUC3XldM52";
+            const limit = 1; // We only need the first one
+
+            // Construct URL: q is the search term, api_key is your auth
+            const url = `https://api.giphy.com/v1/gifs/search?q=${input}&api_key=${apiKey}&limit=${limit}`;
+
+            $.ajax({
+                method: "GET",
+                url: url,
+                success: function (response) {
+                    // 1. Check if we found anything
+                    if (response.data.length > 0) {
+                        // 2. Extract the embed_url from the first result
+                        const embedUrl = response.data[0].embed_url;
+
+                        // 3. Display it using an iframe
+                        $("#gif-container").empty().append(
+                            `<iframe src="${embedUrl}"></iframe>`
+                        );
+                    } else {
+                        $("#gif-container").text("No GIFs found!");
+                    }
+                },
+                error: function (xhr, text, error) {
+                    console.log("Error:", text);
+                    alert("Failed to fetch GIF. Did you add your API Key?");
+                }
+            });
+        };
+
+        // Event Listener for the button
+        $("#search-btn").on("click", fetchGif);
+    </script>
+</body>
+
+</html>
