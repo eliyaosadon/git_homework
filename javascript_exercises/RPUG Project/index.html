@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUPG - Random User Page Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="control-panel">
+        <button id="generate">Generate New User</button>
+        <div class="save-load-controls">
+            <button id="save">Save User</button>
+            <select id="saved-users-select">
+                <option value="" disabled selected>Select a saved user</option>
+            </select>
+            <button id="load">Load User</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="user-container">
+            <div class="user-profile">
+                <img id="user-img" src="https://via.placeholder.com/150" alt="User Image">
+                <div class="user-info">
+                    <h1 id="user-name">User Name</h1>
+                    <p id="user-location">City, State</p>
+                </div>
+            </div>
+            
+            <div class="quote-container">
+                <p class="quote-text">"Kanye Quote goes here"</p>
+                <p class="quote-author">- Kanye West</p>
+            </div>
+
+            <div class="pokemon-container">
+                <img id="pokemon-img" src="" alt="Pokemon">
+                <p id="pokemon-name">Pokemon Name</p>
+            </div>
+        </div>
+
+        <div class="about-container">
+            <h3>About Me</h3>
+            <p id="about-text">Meat text goes here...</p>
+        </div>
+
+        <div class="friends-container">
+            <h3>Friends</h3>
+            <ul id="friends-list">
+                </ul>
+        </div>
+    </div>
+
+    <script src="APIManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
