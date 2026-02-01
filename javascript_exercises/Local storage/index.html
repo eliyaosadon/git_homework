@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom Keeper</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex-grow: 1;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #wisdom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .wisdom-item {
+            background: #f4f4f4;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .delete-btn {
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px 10px;
+            border: none;
+            background: none;
+        }
+
+        .delete-btn:hover {
+            background-color: #ffdddd;
+            border-radius: 4px;
+        }
+
+        #clear-btn {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Wisdom Collector</h1>
+
+    <div class="input-group">
+        <input type="text" id="wisdom-input" placeholder="Type your wisdom here...">
+        <button id="add-btn">Add Wisdom</button>
+    </div>
+
+    <ul id="wisdom-list"></ul>
+
+    <button id="clear-btn">Clear All Wisdom</button>
+
+    <script>
+        const input = document.getElementById('wisdom-input');
+        const addBtn = document.getElementById('add-btn');
+        const list = document.getElementById('wisdom-list');
+        const clearBtn = document.getElementById('clear-btn');
+
+        let wisdom = [];
+
+        function loadWisdom() {
+            const storedWisdom = localStorage.getItem('wisdom');
+            if (storedWisdom) {
+                wisdom = JSON.parse(storedWisdom);
+                renderList();
+            }
+        }
+
+        function saveWisdom() {
+            localStorage.setItem('wisdom', JSON.stringify(wisdom));
+        }
+
+        function renderList() {
+            list.innerHTML = '';
+
+            wisdom.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'wisdom-item';
+
+                li.innerHTML = `
+                    <span>${item.text}</span>
+                    <button class="delete-btn" onclick="deleteItem(${item.id})">x</button>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        addBtn.addEventListener('click', () => {
+            const text = input.value;
+            if (!text) return;
+
+            const newWisdom = {
+                id: Date.now(),
+                text: text
+            };
+
+            wisdom.push(newWisdom);
+            renderList();
+            input.value = '';
+
+            if (wisdom.length % 2 === 0) {
+                console.log("Wisdom count is even (" + wisdom.length + "). Saving to Local Storage...");
+                saveWisdom();
+            } else {
+                console.log("Wisdom count is odd. Not saving yet.");
+            }
+        });
+
+        window.deleteItem = function (id) {
+            wisdom = wisdom.filter(item => item.id !== id);
+            saveWisdom();
+            renderList();
+        };
+
+        clearBtn.addEventListener('click', () => {
+            localStorage.removeItem('wisdom');
+            wisdom = [];
+            renderList();
+        });
+
+        loadWisdom();
+
+    </script>
+</body>
+
+</html>
