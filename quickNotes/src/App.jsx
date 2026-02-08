@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>QuickNotes 📝</h1>
+      <h1>QuickNotes</h1>
 
       <NoteForm onSubmit={addNote} />
 
