@@ -1,0 +1,19 @@
+:root {
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  .posts-container {
+    display: flex;
+    gap: 16px;
+  }
+
+  .post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    background-color: #f9f9f9;
+  }
+
+}
