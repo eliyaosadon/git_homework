@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <button id="generate">new user</button>
+        <div class="actions">
+            <button id="save">save user</button>
+            <select id="saved-users-select">
+                <option value="" disabled selected>Choose from the list</option>
+            </select>
+            <button id="load">Load</button>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="profile-card">
+            <div class="header">
+                <img id="user-img" src="" alt="Profile">
+                <div>
+                    <h1 id="user-name">Loading name...</h1>
+                    <p id="user-location"></p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text"></p>
+                <span>- Kanye West Quote</span>
+            </div>
+
+            <div class="poke-box">
+                <img id="pokemon-img" src="">
+                <p id="pokemon-name"></p>
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="about">
+                <h3>About me..</h3>
+                <p id="about-text"></p>
+            </div>
+            <div class="friends">
+                <h3>Friends</h3>
+                <ul id="friends-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="APIManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

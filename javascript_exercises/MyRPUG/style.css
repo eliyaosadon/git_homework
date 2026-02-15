@@ -1,0 +1,100 @@
+body {
+    background-color: #eef2f3;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+
+.top-bar {
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #2980b9;
+    background: #3498db;
+    color: white;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+#save {
+    background: #2ecc71;
+    border-color: #27ae60;
+}
+
+.main-layout {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    background: white;
+    flex: 2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#user-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    /* במקום עיגול מושלם */
+    border: 2px solid #333;
+}
+
+.quote-box {
+    background: #f1f1f1;
+    margin-top: 20px;
+    padding: 10px;
+    border-right: 5px solid #3498db;
+    /* פס בצד ימין כי זה RTL */
+}
+
+.poke-box {
+    margin-top: 20px;
+    text-align: center;
+    background: #fdf2e9;
+    padding: 10px;
+}
+
+.side-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about,
+.friends {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#friends-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+#friends-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
