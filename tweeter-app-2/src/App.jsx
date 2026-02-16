@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import TweetForm from './components/TweetForm';
-import TweetList from './components/TweetList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
 import { getTweets, createTweet } from './lib/api';
 import './index.css';
 
@@ -9,8 +11,17 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userName, setUserName] = useState('');
 
-  const userName = "Eliya";
+  useEffect(() => {
+    const savedUserName = localStorage.getItem('userName');
+    if (savedUserName) {
+      setUserName(savedUserName);
+    } else {
+      setUserName('User');
+      localStorage.setItem('userName', 'User');
+    }
+  }, []);
 
   useEffect(() => {
     loadTweets();
@@ -54,30 +65,50 @@ function App() {
     setIsSubmitting(false);
   };
 
+  const updateUserName = (newUserName) => {
+    setUserName(newUserName);
+    localStorage.setItem('userName', newUserName);
+  };
+
   return (
-    <div className="app">
-      <div className="container">
-        <header className="header">
-          <h1>Tweeter</h1>
-          <p>What's happening?</p>
-        </header>
+    <Router>
+      <div className="app">
+        <Navbar />
 
-        {error && (
-          <div className="error-message">
-            {error}
-            <button onClick={() => setError(null)}>✕</button>
-          </div>
-        )}
+        <div className="container">
+          {error && (
+            <div className="error-message">
+              {error}
+              <button onClick={() => setError(null)}>✕</button>
+            </div>
+          )}
 
-        <TweetForm
-          onSubmit={addTweet}
-          userName={userName}
-          isSubmitting={isSubmitting}
-        />
-
-        <TweetList tweets={tweets} loading={loading} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  tweets={tweets}
+                  loading={loading}
+                  isSubmitting={isSubmitting}
+                  onAddTweet={addTweet}
+                  userName={userName}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  userName={userName}
+                  onUpdateUserName={updateUserName}
+                />
+              }
+            />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
