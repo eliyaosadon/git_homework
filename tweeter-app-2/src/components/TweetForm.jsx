@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function TweetForm({ onSubmit, userName, isSubmitting }) {
+function TweetForm({ onSubmit, isSubmitting }) {
     const [content, setContent] = useState('');
     const maxChars = 140;
 
@@ -19,7 +19,7 @@ function TweetForm({ onSubmit, userName, isSubmitting }) {
     return (
         <div className="tweet-form-container">
             <form onSubmit={handleSubmit} className="tweet-form">
-                <div className="user-avatar">{userName[0]}</div>
+                <div className="user-avatar">U</div>
 
                 <div className="tweet-input-wrapper">
                     <textarea
