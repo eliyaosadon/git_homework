@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Furniture Store</title>
+  <link rel="stylesheet" href="/dist/style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>🛋️ Furniture Store</h1>
+      <!-- Extension 1 -->
+      <div class="wallet">💰 Your balance: $<span id="money">1000</span></div>
+    </header>
+
+    <!-- Exercise 3 -->
+    <section class="card">
+      <h2>🔍 Price Check</h2>
+      <div class="row">
+        <input id="priceInput" type="text" placeholder="e.g. chair" />
+        <button id="priceBtn">Check Price</button>
+      </div>
+      <p id="priceResult" class="result"></p>
+    </section>
+
+    <!-- Exercise 5 -->
+    <section class="card">
+      <h2>🛒 Buy Item</h2>
+      <div class="row">
+        <input id="buyInput" type="text" placeholder="e.g. table" />
+        <button id="buyBtn">Buy</button>
+      </div>
+      <p id="buyResult" class="result"></p>
+    </section>
+
+    <!-- Exercise 6 -->
+    <section class="card">
+      <h2>🏷️ Admin Sale</h2>
+      <button id="saleBtn">Trigger Sale (admin)</button>
+      <pre id="saleResult" class="result"></pre>
+    </section>
+  </div>
+
+  <script src="/dist/main.js"></script>
+</body>
+</html>
