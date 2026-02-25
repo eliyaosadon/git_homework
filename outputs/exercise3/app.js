@@ -6,15 +6,13 @@ const { body, param, validationResult } = require('express-validator');
 const app = express();
 app.use(express.json());
 
-// ── In-memory stores 
 let posts = [];
 let comments = [];
 let postIdSeq = 1;
 let commentIdSeq = 1;
 
-// ── AJV setup (used for Posts) 
 const ajv = new Ajv({ allErrors: true });
-addFormats(ajv); // adds "email", "date-time", etc.
+addFormats(ajv);
 
 const postSchema = {
   type: 'object',
@@ -33,14 +31,11 @@ const postSchema = {
 
 const validatePost = ajv.compile(postSchema);
 
-// ── Advanced Middleware 
-
 // 1. Request/Response logger with execution time
 const requestLogger = (req, res, next) => {
   const start = Date.now();
   const timestamp = new Date().toISOString();
 
-  // Hook into the finish event so we can log response status + time
   res.on('finish', () => {
     const duration = Date.now() - start;
     console.log(`[${timestamp}] ${req.method} ${req.url} → ${res.statusCode} (${duration}ms)`);
@@ -49,19 +44,18 @@ const requestLogger = (req, res, next) => {
   next();
 };
 
-// 2. Rate limiting simulation (max 10 requests per IP per minute)
-const ipRequestMap = new Map(); // { ip: { count, resetAt } }
+// 2. Rate limiting simulation
+const ipRequestMap = new Map(); 
 
 const rateLimiter = (req, res, next) => {
   const ip = req.ip;
   const now = Date.now();
-  const windowMs = 60 * 1000; // 1 minute
+  const windowMs = 60 * 1000; 
   const maxRequests = 10;
 
   const record = ipRequestMap.get(ip);
 
   if (!record || now > record.resetAt) {
-    // First request from this IP or window expired – start fresh
     ipRequestMap.set(ip, { count: 1, resetAt: now + windowMs });
     return next();
   }
@@ -87,12 +81,11 @@ const requireJson = (req, res, next) => {
   next();
 };
 
-// 4. Response formatter – wraps every successful JSON reply in { success, data }
+// 4. Response formatter 
 const responseFormatter = (req, res, next) => {
   const originalJson = res.json.bind(res);
 
   res.json = (body) => {
-    // Don't wrap error responses (they already have an "error" key)
     if (body && body.error) return originalJson(body);
 
     return originalJson({ success: true, data: body });
@@ -107,7 +100,6 @@ app.use(rateLimiter);
 app.use(requireJson);
 app.use(responseFormatter);
 
-// ── Helper: extract express-validator errors
 const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -139,7 +131,6 @@ const commentValidationRules = [
     .withMessage('email must be a valid email address'),
 ];
 
-// Check that the referenced post actually exists
 const checkPostExists = (req, res, next) => {
   const postId = Number(req.params.postId);
   if (!Number.isInteger(postId)) {
@@ -159,7 +150,6 @@ const validatePostId = [
   handleValidationErrors,
 ];
 
-// ── Routes 
 
 // POST /posts – AJV validation
 app.post('/posts', ajvValidatePost, (req, res) => {
@@ -192,14 +182,13 @@ app.post(
   }
 );
 
-// GET /posts/:postId/comments – ID validation only
+// GET /posts/:postId/comments 
 app.get('/posts/:postId/comments', validatePostId, (req, res) => {
   const postId = Number(req.params.postId);
   const postComments = comments.filter((c) => c.postId === postId);
   res.json(postComments);
 });
 
-// ── Global error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(err.stack);
