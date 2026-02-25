@@ -1,0 +1,17 @@
+{
+  "name": "express-middleware-exercises",
+  "version": "1.0.0",
+  "description": "Express middleware exercises 1-3",
+  "main": "app.js",
+  "scripts": {
+    "ex1": "node exercise1/app.js",
+    "ex2": "node exercise2/app.js",
+    "ex3": "node exercise3/app.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1"
+  }
+}
