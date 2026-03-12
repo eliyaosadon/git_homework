@@ -26,7 +26,7 @@ const renderer = {
     });
   },
 
-  renderDropdown(savedUsers) {
+   updateDropdown(savedUsers) {
     const select = document.getElementById("saved-users-select");
     select.innerHTML =
       '<option value="" disabled selected>Choose a saved user</option>';

@@ -33,7 +33,7 @@
       }
 
       button {
-        padding: 8px 16px;
+        padding: 8px 17px;
         border: none;
         border-radius: 6px;
         background-color: white;
@@ -83,7 +83,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 17px;
       }
 
       /* Right side */
@@ -91,13 +91,13 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 17px;
       }
 
       .user-header, .quote-box, .poke-box, .card {
         background: white;
         border-radius: 8px;
-        padding: 16px;
+        padding: 17px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       }
 
@@ -105,7 +105,7 @@
       .user-header {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 17px;
       }
       #user-img {
         width: 80px;
@@ -197,10 +197,10 @@
   <body>
     <!-- Top part -->
     <div class="top-bar">
-      <h2>RUPG 🎲</h2>
+      <h2>Eliya's RUPG </h2>
       <div class="actions">
         <button id="generate">⟳ New User</button>
-        <button id="save">💾 Save User</button>
+        <button id="save">Save</button>
         <select id="saved-users-select">
           <option value="" disabled selected>Choose a saved user</option>
         </select>
@@ -233,7 +233,7 @@
 
         <!-- Pokemon -->
         <div class="poke-box">
-          <h3>Favourite Pokémon</h3>
+          <h3>Favorite Pokémon</h3>
           <img id="pokemon-img" src="" alt="Pokemon" />
           <p id="pokemon-name"></p>
         </div>
@@ -241,7 +241,7 @@
 
       <div class="side-info">
         <div class="card">
-          <h3>About Me</h3>
+          <h3>About</h3>
           <p id="about-text">Loading...</p>
         </div>
 
@@ -252,7 +252,6 @@
       </div>
     </div>
 
-    <!-- Scripts -->
     <script src="APIManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="main.js"></script>

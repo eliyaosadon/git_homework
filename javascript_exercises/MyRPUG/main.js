@@ -1,19 +1,19 @@
 const STORAGE_KEY = "RUPG_saved_users";
 
-async function handleGenerate() {
+async function loadRandomUser() {
   renderer.setLoading(true);
   try {
     await apiManager.loadData();
     renderer.render(apiManager.data);
   } catch (err) {
-    renderer.showMessage("Failed to load data. Check your connection.", true);
+    renderer.showMessage("Failed to load data.", true);
     console.error(err);
   } finally {
     renderer.setLoading(false);
   }
 }
 
-function handleSave() {
+function saveUser() {
   if (!apiManager.data.user) {
     return renderer.showMessage("Generate a user first!", true);
   }
@@ -26,10 +26,10 @@ function handleSave() {
   renderer.showMessage(
     `${apiManager.data.user.firstName} has been saved!`
   );
-  refreshDropdown();
+  updateList();
 }
 
-function handleLoad() {
+function loadUser() {
   const select = document.getElementById("saved-users-select");
   const index = select.value;
 
@@ -45,14 +45,14 @@ function handleLoad() {
   renderer.showMessage(`Loaded ${userToLoad.user.firstName}'s profile!`);
 }
 
-function refreshDropdown() {
+function updateList() {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  renderer.renderDropdown(saved);
+  renderer. updateDropdown(saved);
 }
 
-document.getElementById("generate").onclick = handleGenerate;
-document.getElementById("save").onclick = handleSave;
-document.getElementById("load").onclick = handleLoad;
+document.getElementById("generate").onclick = loadRandomUser;
+document.getElementById("save").onclick = saveUser;
+document.getElementById("load").onclick = loadUser;
 
-handleGenerate(); 
-refreshDropdown(); 
+loadRandomUser(); 
+updateList(); 
