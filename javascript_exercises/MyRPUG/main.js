@@ -1,55 +1,58 @@
-const storageKey = 'Users';
+const STORAGE_KEY = "RUPG_saved_users";
 
 async function handleGenerate() {
+  renderer.setLoading(true);
+  try {
     await apiManager.loadData();
     renderer.render(apiManager.data);
+  } catch (err) {
+    renderer.showMessage("Failed to load data. Check your connection.", true);
+    console.error(err);
+  } finally {
+    renderer.setLoading(false);
+  }
 }
 
 function handleSave() {
-    const dataToSave = apiManager.data;
+  if (!apiManager.data.user) {
+    return renderer.showMessage("Generate a user first!", true);
+  }
 
-    if (!dataToSave.user) {
-        return alert("Create a user first");
-    }
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
 
-    let saved = localStorage.getItem(storageKey);
-    let usersArray = [];
+  saved.push(apiManager.data);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
 
-    if (saved) {
-        usersArray = JSON.parse(saved);
-    }
-
-    usersArray.push(dataToSave);
-    localStorage.setItem(storageKey, JSON.stringify(usersArray));
-
-    alert(dataToSave.user.firstName + "Saved");
-    refreshList();
+  renderer.showMessage(
+    `${apiManager.data.user.firstName} has been saved!`
+  );
+  refreshDropdown();
 }
 
 function handleLoad() {
-    const select = document.getElementById('saved-users-select');
-    const index = select.value;
+  const select = document.getElementById("saved-users-select");
+  const index = select.value;
 
-    if (index === "") {
-        alert("Pick someone from the list");
-        return;
-    }
+  if (index === "") {
+    return renderer.showMessage("Please select a user from the list.", true);
+  }
 
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    const userToDisplay = saved[index];
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  const userToLoad = saved[index];
 
-    apiManager.data = userToDisplay;
-    renderer.render(userToDisplay);
+  apiManager.data = userToLoad;
+  renderer.render(userToLoad);
+  renderer.showMessage(`Loaded ${userToLoad.user.firstName}'s profile!`);
 }
 
-function refreshList() {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    renderer.renderDropdown(saved);
+function refreshDropdown() {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  renderer.renderDropdown(saved);
 }
 
-document.getElementById('generate').onclick = handleGenerate;
-document.getElementById('save').onclick = handleSave;
-document.getElementById('load').onclick = handleLoad;
+document.getElementById("generate").onclick = handleGenerate;
+document.getElementById("save").onclick = handleSave;
+document.getElementById("load").onclick = handleLoad;
 
-handleGenerate();
-refreshList();
+handleGenerate(); 
+refreshDropdown(); 

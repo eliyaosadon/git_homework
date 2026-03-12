@@ -1,61 +1,260 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RUPG - Random User Page Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
-    <meta charset="UTF-8">
-    <title>Users Generator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+      .top-bar {
+        background-color: #3a86ff;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .top-bar h2 {
+        color: white;
+        margin: 0;
+        font-size: 1.3rem;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
 
-<body>
+      button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        background-color: white;
+        color: #3a86ff;
+        font-size: 0.9rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #e0ecff;
+      }
 
+      select {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 0.9rem;
+      }
+
+      #status-message {
+        text-align: center;
+        padding: 6px;
+        font-size: 0.9rem;
+        color: green;
+        min-height: 22px;
+      }
+
+      /* Loading */
+      #loading {
+        text-align: center;
+        padding: 60px;
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      /* Main */
+      #main-content {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* Left side */
+      .profile-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* Right side */
+      .side-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .user-header, .quote-box, .poke-box, .card {
+        background: white;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      }
+
+      /* User */
+      .user-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      #user-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #3a86ff;
+      }
+      #user-name {
+        font-size: 1.4rem;
+        margin: 0 0 4px 0;
+        color: #222;
+      }
+      #user-location {
+        color: #777;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .quote-box {
+        border-left: 4px solid #3a86ff;
+      }
+      #quote-text {
+        font-style: italic;
+        color: #333;
+        margin: 0 0 6px 0;
+      }
+      .quote-author {
+        font-size: 0.85rem;
+        color: #3a86ff;
+        font-weight: bold;
+      }
+
+      /* Pokemon */
+      .poke-box {
+        text-align: center;
+      }
+      .poke-box h3 {
+        margin: 0 0 8px 0;
+        color: #555;
+        font-size: 0.9rem;
+      }
+      #pokemon-img {
+        width: 90px;
+        height: 90px;
+        image-rendering: pixelated;
+      }
+      #pokemon-name {
+        font-weight: bold;
+        color: #3a86ff;
+        margin: 4px 0 0 0;
+      }
+
+      .card h3 {
+        margin: 0 0 10px 0;
+        color: #3a86ff;
+        font-size: 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 6px;
+      }
+      #about-text {
+        color: #444;
+        line-height: 1.6;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      #friends-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      #friends-list li {
+        background: #f5f5f5;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
+      @media (max-width: 650px) {
+        #main-content { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top part -->
     <div class="top-bar">
-        <button id="generate">new user</button>
-        <div class="actions">
-            <button id="save">save user</button>
-            <select id="saved-users-select">
-                <option value="" disabled selected>Choose from the list</option>
-            </select>
-            <button id="load">Load</button>
-        </div>
+      <h2>RUPG 🎲</h2>
+      <div class="actions">
+        <button id="generate">⟳ New User</button>
+        <button id="save">💾 Save User</button>
+        <select id="saved-users-select">
+          <option value="" disabled selected>Choose a saved user</option>
+        </select>
+        <button id="load">Load</button>
+      </div>
     </div>
 
-    <div class="main-layout">
-        <div class="profile-card">
-            <div class="header">
-                <img id="user-img" src="" alt="Profile">
-                <div>
-                    <h1 id="user-name">Loading name...</h1>
-                    <p id="user-location"></p>
-                </div>
-            </div>
+    <!-- Message -->
+    <p id="status-message"></p>
 
-            <div class="quote-box">
-                <p class="quote-text"></p>
-                <span>- Kanye West Quote</span>
-            </div>
+    <!-- Loading -->
+    <div id="loading">Loading your random user... ⏳</div>
 
-            <div class="poke-box">
-                <img id="pokemon-img" src="">
-                <p id="pokemon-name"></p>
-            </div>
+    <!-- Main -->
+    <div id="main-content" style="display: none">
+      <div class="profile-card">
+        <div class="user-header">
+          <img id="user-img" src="" alt="Profile Picture" />
+          <div>
+            <h1 id="user-name">Name Here</h1>
+            <p id="user-location">City, State</p>
+          </div>
         </div>
 
-        <div class="side-info">
-            <div class="about">
-                <h3>About me..</h3>
-                <p id="about-text"></p>
-            </div>
-            <div class="friends">
-                <h3>Friends</h3>
-                <ul id="friends-list"></ul>
-            </div>
+        <!-- Kanye -->
+        <div class="quote-box">
+          <p id="quote-text">"Loading quote..."</p>
+          <span class="quote-author">— Kanye West</span>
         </div>
+
+        <!-- Pokemon -->
+        <div class="poke-box">
+          <h3>Favourite Pokémon</h3>
+          <img id="pokemon-img" src="" alt="Pokemon" />
+          <p id="pokemon-name"></p>
+        </div>
+      </div>
+
+      <div class="side-info">
+        <div class="card">
+          <h3>About Me</h3>
+          <p id="about-text">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>Friends</h3>
+          <ul id="friends-list"></ul>
+        </div>
+      </div>
     </div>
 
+    <!-- Scripts -->
     <script src="APIManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
